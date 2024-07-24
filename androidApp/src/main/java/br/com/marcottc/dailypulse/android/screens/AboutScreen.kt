@@ -1,4 +1,4 @@
-package br.com.marcottc.dailypulse.android
+package br.com.marcottc.dailypulse.android.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
