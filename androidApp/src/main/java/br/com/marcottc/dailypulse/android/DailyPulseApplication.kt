@@ -1,6 +1,7 @@
 package br.com.marcottc.dailypulse.android
 
 import android.app.Application
+import br.com.marcottc.dailypulse.android.di.databaseModule
 import br.com.marcottc.dailypulse.android.di.viewModelsModule
 import br.com.marcottc.dailypulse.di.sharedKoinModules
 import org.koin.android.ext.koin.androidContext
@@ -15,7 +16,7 @@ class DailyPulseApplication: Application() {
     }
 
     private fun initKoin() {
-        val allModules = sharedKoinModules + viewModelsModule
+        val allModules = sharedKoinModules + viewModelsModule + databaseModule
 
         startKoin {
             androidContext(this@DailyPulseApplication)
