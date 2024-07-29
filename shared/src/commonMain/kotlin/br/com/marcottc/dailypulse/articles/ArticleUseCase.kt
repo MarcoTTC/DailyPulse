@@ -1,5 +1,13 @@
 package br.com.marcottc.dailypulse.articles
 
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.daysUntil
+import kotlinx.datetime.toLocalDateTime
+import kotlinx.datetime.todayIn
+import kotlin.math.abs
+
 class ArticleUseCase(private val service: ArticleService) {
 
     suspend fun getArticleList(): List<Article> {
@@ -12,7 +20,23 @@ class ArticleUseCase(private val service: ArticleService) {
             Article(
                 title = raw.title,
                 desc = raw.desc ?: "Click to find out more",
-                date = raw.date,
+                date = getDaysAgo(raw.date),
                 imageUrl = raw.imageUrl ?: "https://biztoc.com/cdn/800/og.png"
-            ) }
+            )
+        }
+
+    private fun getDaysAgo(date: String): String {
+        val today = Clock.System.todayIn(TimeZone.currentSystemDefault())
+        val days = today.daysUntil(
+            Instant.parse(date).toLocalDateTime(TimeZone.currentSystemDefault()).date
+        )
+
+        val result = when {
+            abs(days) > 1 -> "${abs(days)}  days ago"
+            abs(days) == 1 -> "Yesterday"
+            else -> "Today"
+        }
+
+        return result
+    }
 }
