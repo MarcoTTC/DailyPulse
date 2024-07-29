@@ -15,7 +15,7 @@ import br.com.marcottc.dailypulse.android.screens.Screens
 import br.com.marcottc.dailypulse.articles.ArticleViewModel
 
 @Composable
-fun AppScaffold(articleViewModel: ArticleViewModel) {
+fun AppScaffold() {
     val navController = rememberNavController()
 
     Scaffold {
@@ -23,8 +23,7 @@ fun AppScaffold(articleViewModel: ArticleViewModel) {
             navController = navController,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it),
-            articleViewModel
+                .padding(it)
         )
     }
 }
@@ -32,8 +31,7 @@ fun AppScaffold(articleViewModel: ArticleViewModel) {
 @Composable
 fun AppNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
-    articleViewModel: ArticleViewModel
+    modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navController,
@@ -42,8 +40,7 @@ fun AppNavHost(
     ) {
         composable(Screens.ARTICLES.route) {
             ArticleScreen(
-                onAboutButtonClick = { navController.navigate(Screens.ABOUT_DEVICE.route) },
-                articleViewModel
+                onAboutButtonClick = { navController.navigate(Screens.ABOUT_DEVICE.route) }
             )
         }
         composable(Screens.ABOUT_DEVICE.route) {

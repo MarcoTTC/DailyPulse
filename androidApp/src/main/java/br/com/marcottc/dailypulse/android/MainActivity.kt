@@ -16,7 +16,6 @@ import br.com.marcottc.dailypulse.articles.ArticleViewModel
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val articleViewModel: ArticleViewModel by viewModels()
 
         setContent {
             MyApplicationTheme {
@@ -24,7 +23,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AppScaffold(articleViewModel = articleViewModel)
+                    AppScaffold()
                 }
             }
         }
