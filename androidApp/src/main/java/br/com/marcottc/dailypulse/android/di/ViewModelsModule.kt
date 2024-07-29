@@ -1,6 +1,6 @@
 package br.com.marcottc.dailypulse.android.di
 
-import br.com.marcottc.dailypulse.articles.ArticleViewModel
+import br.com.marcottc.dailypulse.articles.presentation.ArticleViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

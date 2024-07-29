@@ -1,10 +1,10 @@
 package br.com.marcottc.dailypulse.di
 
-import br.com.marcottc.dailypulse.articles.ArticleDataSource
-import br.com.marcottc.dailypulse.articles.ArticleRepository
-import br.com.marcottc.dailypulse.articles.ArticleService
-import br.com.marcottc.dailypulse.articles.ArticleUseCase
-import br.com.marcottc.dailypulse.articles.ArticleViewModel
+import br.com.marcottc.dailypulse.articles.data.ArticleDataSource
+import br.com.marcottc.dailypulse.articles.data.ArticleRepository
+import br.com.marcottc.dailypulse.articles.data.ArticleService
+import br.com.marcottc.dailypulse.articles.application.ArticleUseCase
+import br.com.marcottc.dailypulse.articles.presentation.ArticleViewModel
 import org.koin.dsl.module
 
 val articleModule = module {

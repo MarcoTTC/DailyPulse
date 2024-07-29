@@ -1,4 +1,4 @@
-package br.com.marcottc.dailypulse.articles
+package br.com.marcottc.dailypulse.articles.application
 
 data class Article(
     val title: String,

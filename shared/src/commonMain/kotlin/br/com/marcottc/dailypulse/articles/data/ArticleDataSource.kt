@@ -1,4 +1,4 @@
-package br.com.marcottc.dailypulse.articles
+package br.com.marcottc.dailypulse.articles.data
 
 import br.com.marcottc.dailypulse.db.DailyPulseDatabase
 

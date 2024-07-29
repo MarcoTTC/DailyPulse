@@ -1,6 +1,6 @@
 package br.com.marcottc.dailypulse.di
 
-import br.com.marcottc.dailypulse.articles.ArticleViewModel
+import br.com.marcottc.dailypulse.articles.presentation.ArticleViewModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin

@@ -1,14 +1,11 @@
-package br.com.marcottc.dailypulse.articles
+package br.com.marcottc.dailypulse.articles.presentation
 
 import br.com.marcottc.dailypulse.BaseViewModel
-import io.ktor.client.HttpClient
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.serialization.kotlinx.json.json
-import kotlinx.coroutines.delay
+import br.com.marcottc.dailypulse.articles.application.ArticleUseCase
+import br.com.marcottc.dailypulse.articles.presentation.ArticleState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.serialization.json.Json
 
 class ArticleViewModel(private val useCase: ArticleUseCase): BaseViewModel() {
 
