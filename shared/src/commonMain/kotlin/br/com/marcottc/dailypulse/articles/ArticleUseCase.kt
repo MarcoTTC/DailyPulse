@@ -31,9 +31,10 @@ class ArticleUseCase(private val service: ArticleService) {
             Instant.parse(date).toLocalDateTime(TimeZone.currentSystemDefault()).date
         )
 
+        val absoluteDaysNumber = abs(days)
         val result = when {
-            abs(days) > 1 -> "${abs(days)}  days ago"
-            abs(days) == 1 -> "Yesterday"
+            absoluteDaysNumber > 1 -> "$absoluteDaysNumber  days ago"
+            absoluteDaysNumber == 1 -> "Yesterday"
             else -> "Today"
         }
 
