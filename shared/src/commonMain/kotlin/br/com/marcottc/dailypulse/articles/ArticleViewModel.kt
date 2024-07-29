@@ -12,16 +12,24 @@ import kotlinx.serialization.json.Json
 
 class ArticleViewModel(private val useCase: ArticleUseCase): BaseViewModel() {
 
-    private val _articleState: MutableStateFlow<ArticleState> = MutableStateFlow(ArticleState(loading = true))
+    private val _articleState: MutableStateFlow<ArticleState> =
+        MutableStateFlow(ArticleState(loading = true))
     val articleState: StateFlow<ArticleState> get() = _articleState
 
     init {
         getArticles()
     }
 
-    private fun getArticles() {
+    fun getArticles(forceFetch: Boolean = false) {
         scope.launch {
-            val fetchedArticleList = useCase.getArticleList()
+            _articleState.emit(
+                ArticleState(
+                    loading = true,
+                    articleList = _articleState.value.articleList
+                )
+            )
+
+            val fetchedArticleList = useCase.getArticleList(forceFetch)
 
             _articleState.emit(ArticleState(articleList = fetchedArticleList))
         }

@@ -31,6 +31,8 @@ import androidx.compose.ui.unit.sp
 import br.com.marcottc.dailypulse.articles.Article
 import br.com.marcottc.dailypulse.articles.ArticleViewModel
 import coil.compose.AsyncImage
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.SwipeRefreshState
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -43,14 +45,11 @@ fun ArticleScreen(
     Column {
         AppBar(onAboutButtonClick)
 
-        if (articleState.value.loading) {
-            Loader()
-        }
         if (articleState.value.error != null) {
             ErrorMessage(articleState.value.error!!)
         }
         if (articleState.value.articleList.isNotEmpty()) {
-            ArticleListView(articleViewModel.articleState.value.articleList)
+            ArticleListView(articleViewModel)
         }
     }
 }
@@ -72,10 +71,15 @@ private fun AppBar(onAboutButtonClick: () -> Unit) {
 }
 
 @Composable
-fun ArticleListView(articleList: List<Article>) {
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
-        items(articleList.size) { index ->
-            ArticleItemView(article = articleList[index])
+fun ArticleListView(viewModel: ArticleViewModel) {
+    SwipeRefresh(
+        state = SwipeRefreshState(viewModel.articleState.value.loading),
+        onRefresh = { viewModel.getArticles(forceFetch = true) }
+    ) {
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items(viewModel.articleState.value.articleList.size) { index ->
+                ArticleItemView(article = viewModel.articleState.value.articleList[index])
+            }
         }
     }
 }
@@ -105,20 +109,6 @@ fun ArticleItemView(article: Article) {
             modifier = Modifier.align(Alignment.End)
         )
         Spacer(modifier = Modifier.height(4.dp))
-    }
-}
-
-@Composable
-fun Loader() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center,
-    ) {
-        CircularProgressIndicator(
-            modifier = Modifier.width(64.dp),
-            color = MaterialTheme.colorScheme.surfaceVariant,
-            trackColor = MaterialTheme.colorScheme.secondary
-        )
     }
 }
 

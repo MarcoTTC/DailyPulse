@@ -10,8 +10,8 @@ import kotlin.math.abs
 
 class ArticleUseCase(private val repository: ArticleRepository) {
 
-    suspend fun getArticleList(): List<Article> {
-        val articleRawList = repository.getAllArticles()
+    suspend fun getArticleList(forceFetch: Boolean): List<Article> {
+        val articleRawList = repository.getAllArticles(forceFetch)
         return mapArticle(articleRawList)
     }
 
