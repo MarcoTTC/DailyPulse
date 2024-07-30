@@ -1,4 +1,4 @@
-package br.com.marcottc.dailypulse.di
+package br.com.marcottc.dailypulse.articles.di
 
 import br.com.marcottc.dailypulse.articles.data.ArticleDataSource
 import br.com.marcottc.dailypulse.articles.data.ArticleRepository

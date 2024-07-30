@@ -4,6 +4,7 @@ import shared
 struct ContentView: View {
 
     @State private var shouldOpenAbout = false
+    @State private var shouldOpenSources = false
 
 	var body: some View {
 	    let articleScreen = ArticleScreen(viewModel: .init())
@@ -13,17 +14,29 @@ struct ContentView: View {
 	            .toolbar {
 	                ToolbarItem {
 	                    Button {
-	                        shouldOpenAbout = true
+	                        shouldOpenSources = true
 	                    } label: {
-	                        Label("About", systemIamge: "info.circle").labelStyle()
+	                        Label("Sources", systemIamge: "list.bullet.rectangle")
+	                            .labelStyle(.titleAndIcon)
 	                    }
-	                    .popover(isPresented: $shouldOpenAbout) {
-	                        AboutScreen()
+	                    .popover(isPresented: $shouldOpenSources) {
+	                        SourcesScreen(viewModel: .init())
 	                    }
 	                }
+	                ToolbarItem {
+                        Button {
+                            shouldOpenAbout = true
+                        } label: {
+                            Label("About", systemIamge: "info.circle")
+                                .labelStyle(.titleAndIcon)
+                        }
+                        .popover(isPresented: $shouldOpenAbout) {
+                            AboutScreen()
+                        }
+                    }
 	            }
 	    }.refreshable {
-	        articleScreen.viewModel.articleViewModel.getArticle()
+	        articleScreen.viewModel.articleViewModel.getArticle(forceFetch: true)
 	    }
     }
 }

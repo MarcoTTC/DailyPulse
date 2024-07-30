@@ -5,6 +5,7 @@ extension ArticleScreen {
 
     @MainActor
     class ArticleViewModelWrapper: ObservableObject {
+
         let articleViewModel: ArticleViewModel
 
         init() {
