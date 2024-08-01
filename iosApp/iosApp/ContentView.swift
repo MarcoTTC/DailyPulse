@@ -3,46 +3,16 @@ import shared
 
 struct ContentView: View {
 
-    @State private var shouldOpenAbout = false
-    @State private var shouldOpenSources = false
-
-	var body: some View {
-	    let articleScreen = ArticleScreen(viewModel: .init())
-
-	    NavigationStack {
-		    articleScreen
-	            .toolbar {
-	                ToolbarItem {
-	                    Button {
-	                        shouldOpenSources = true
-	                    } label: {
-	                        Label("Sources", systemIamge: "list.bullet.rectangle")
-	                            .labelStyle(.titleAndIcon)
-	                    }
-	                    .popover(isPresented: $shouldOpenSources) {
-	                        SourcesScreen(viewModel: .init())
-	                    }
-	                }
-	                ToolbarItem {
-                        Button {
-                            shouldOpenAbout = true
-                        } label: {
-                            Label("About", systemIamge: "info.circle")
-                                .labelStyle(.titleAndIcon)
-                        }
-                        .popover(isPresented: $shouldOpenAbout) {
-                            AboutScreen()
-                        }
-                    }
-	            }
-	    }.refreshable {
-	        articleScreen.viewModel.articleViewModel.getArticle(forceFetch: true)
-	    }
+    var body: some View {
+        ComposeView().ignoreSafeArea(.keyboard)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+struct ComposeView:UIViewControllerRepresentable {
+
+    func makeUIViewController(context: Context) -> some UIViewController {
+        MainIOSKt.MainViewController()
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
 }
