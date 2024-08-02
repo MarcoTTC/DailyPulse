@@ -36,9 +36,19 @@ import br.com.marcottc.dailypulse.ui.screens.elements.ErrorMessage
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 import org.koin.compose.koinInject
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+
+class ArticleScreen(): Screen {
+    @Composable
+    override fun Content() {
+        ArticleScreenContent()
+    }
+}
 
 @Composable
-fun ArticleScreen(
+fun ArticleScreenContent(
     articleViewModel: ArticleViewModel = koinInject()
 ) {
     val articleState = articleViewModel.articleState.collectAsState()
@@ -58,16 +68,22 @@ fun ArticleScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AppBar() {
+    val navigator = LocalNavigator.currentOrThrow
+
     TopAppBar(
         title = { Text(text = "Articles") },
         actions = {
-            IconButton(onClick = {  }) {
+            IconButton(onClick = {
+                navigator.push(SourceScreen())
+            }) {
                 Icon(
                     imageVector = Icons.Outlined.List,
                     contentDescription = "Sources Button"
                 )
             }
-            IconButton(onClick = {  }) {
+            IconButton(onClick = {
+                navigator.push(AboutScreen())
+            }) {
                 Icon(
                     imageVector = Icons.Outlined.Info,
                     contentDescription = "About Device Button"

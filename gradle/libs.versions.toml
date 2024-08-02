@@ -17,6 +17,7 @@ sqlDelight = "2.0.1"
 composeMultiplatform = "1.6.1"
 koinCompose = "1.1.2"
 kamelImage = "0.9.4"
+voyagerVersion = "1.1.0-alpha04"
 
 [libraries]
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanistSwiperefresh" }
@@ -44,6 +45,8 @@ koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", versi
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCompose" }
+
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator",  version.ref = "voyagerVersion" }
 
 sql-coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
 sql-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" }

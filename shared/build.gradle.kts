@@ -43,6 +43,7 @@ kotlin {
             implementation(libs.compose.material)
             implementation(libs.koin.compose)
             implementation(libs.kamel.image)
+            implementation(libs.voyager.navigator)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

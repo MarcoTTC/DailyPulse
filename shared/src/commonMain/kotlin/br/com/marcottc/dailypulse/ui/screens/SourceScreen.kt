@@ -1,4 +1,4 @@
-package br.com.marcottc.dailypulse.android.screens
+package br.com.marcottc.dailypulse.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -27,10 +27,21 @@ import androidx.compose.ui.unit.sp
 import br.com.marcottc.dailypulse.sources.application.Source
 import br.com.marcottc.dailypulse.sources.presentation.SourceViewModel
 import br.com.marcottc.dailypulse.ui.screens.elements.ErrorMessage
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import org.koin.compose.koinInject
 
+class SourceScreen(): Screen {
+    @Composable
+    override fun Content() {
+        SourceScreenContent()
+    }
+
+}
+
 @Composable
-fun SourceScreen(
+fun SourceScreenContent(
     viewModel: SourceViewModel = koinInject()
 ) {
     val sourceState = viewModel.sourceState.collectAsState()
@@ -48,10 +59,14 @@ fun SourceScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AppBar() {
+    val navigator = LocalNavigator.currentOrThrow
+
     TopAppBar(
         title = { Text(text = "Sources") },
         navigationIcon = {
-            IconButton(onClick = { }) {
+            IconButton(onClick = {
+                navigator.pop()
+            }) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
                     contentDescription = "Up Button",

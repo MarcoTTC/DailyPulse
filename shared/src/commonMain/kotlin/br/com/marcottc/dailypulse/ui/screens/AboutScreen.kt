@@ -18,9 +18,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import br.com.marcottc.dailypulse.Platform
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+
+class AboutScreen(): Screen {
+    @Composable
+    override fun Content() {
+        AboutScreenContent()
+    }
+
+}
 
 @Composable
-fun AboutScreen() {
+fun AboutScreenContent() {
     Column {
         Toolbar()
         ContentView()
@@ -30,10 +41,14 @@ fun AboutScreen() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Toolbar() {
+    val navigator = LocalNavigator.currentOrThrow
+
     TopAppBar(
         title = { Text("About Device") },
         navigationIcon = {
-            IconButton(onClick = { }) {
+            IconButton(onClick = {
+                navigator.pop()
+            }) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
                     contentDescription = "Up Button"
