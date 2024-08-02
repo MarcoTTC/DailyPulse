@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
 import br.com.marcottc.dailypulse.ui.App
-import br.com.marcottc.dailypulse.ui.screens.ArticleScreen
+import br.com.marcottc.dailypulse.ui.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
