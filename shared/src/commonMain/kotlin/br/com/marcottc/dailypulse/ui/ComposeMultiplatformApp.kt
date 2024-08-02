@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import br.com.marcottc.dailypulse.ui.screens.ArticleScreen
 import cafe.adriel.voyager.navigator.Navigator
+import cafe.adriel.voyager.transitions.SlideTransition
 
 @Composable
 fun App() {
@@ -15,7 +16,9 @@ fun App() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            Navigator(ArticleScreen())
+            Navigator(ArticleScreen()) { navigator ->
+                SlideTransition(navigator)
+            }
         }
     }
 }
