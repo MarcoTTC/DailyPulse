@@ -1,9 +1,8 @@
 package br.com.marcottc.dailypulse
 
-import br.com.marcottc.dailypulse.ui.App
 import androidx.compose.ui.window.ComposeUIViewController
-import br.com.marcottc.dailypulse.ui.screens.AboutScreen
+import br.com.marcottc.dailypulse.android.screens.SourceScreen
 
 fun MainViewController() = ComposeUIViewController {
-    AboutScreen()
+    SourceScreen()
 }

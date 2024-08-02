@@ -41,6 +41,7 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.material3)
             implementation(libs.compose.material)
+            implementation(libs.koin.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
