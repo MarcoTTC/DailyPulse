@@ -26,7 +26,11 @@ kotlin {
         }
     }
 
+    jvm("desktop")
+
     sourceSets {
+        val desktopMain by getting
+
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.ktor.client.core)
@@ -59,6 +63,11 @@ kotlin {
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
             implementation(libs.sql.native.driver)
+        }
+
+        desktopMain.dependencies {
+            implementation(libs.ktor.client.cio)
+            implementation(libs.sql.desktop.driver)
         }
     }
 }
