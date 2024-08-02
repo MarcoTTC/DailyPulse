@@ -16,6 +16,7 @@ koin = "3.6.0-wasm-alpha2"
 sqlDelight = "2.0.1"
 composeMultiplatform = "1.6.1"
 koinCompose = "1.1.2"
+kamelImage = "0.9.4"
 
 [libraries]
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanistSwiperefresh" }
@@ -49,6 +50,8 @@ sql-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref 
 sql-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
 
 compose-material = { module = "org.jetbrains.compose.material:material", version.ref = "composeMultiplatform" }
+
+kamel-image = { module = "media.kamel:kamel-image", version.ref = "kamelImage" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
