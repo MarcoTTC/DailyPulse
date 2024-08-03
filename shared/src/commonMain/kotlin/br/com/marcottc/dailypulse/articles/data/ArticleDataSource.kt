@@ -2,13 +2,13 @@ package br.com.marcottc.dailypulse.articles.data
 
 import br.com.marcottc.dailypulse.db.DailyPulseDatabase
 
-class ArticleDataSource(private val database: DailyPulseDatabase) {
+class ArticleDataSource(private val database: DailyPulseDatabase?) {
 
     fun getAllArticle(): List<ArticleRaw> =
-        database.dailyPulseDatabaseQueries.selectAllArticles(::mapToArticleRaw).executeAsList()
+        database?.dailyPulseDatabaseQueries?.selectAllArticles(::mapToArticleRaw)?.executeAsList() ?: emptyList()
 
     fun insertArticleList(articleList: List<ArticleRaw>) {
-        database.dailyPulseDatabaseQueries.transaction {
+        database?.dailyPulseDatabaseQueries?.transaction {
             articleList.forEach { articleRaw ->
                 insertArticle(articleRaw)
             }
@@ -16,7 +16,7 @@ class ArticleDataSource(private val database: DailyPulseDatabase) {
     }
 
     fun insertArticle(articleRaw: ArticleRaw) {
-        database.dailyPulseDatabaseQueries.insertArticle(
+        database?.dailyPulseDatabaseQueries?.insertArticle(
             articleRaw.title,
             articleRaw.desc,
             articleRaw.date,
@@ -25,7 +25,7 @@ class ArticleDataSource(private val database: DailyPulseDatabase) {
     }
 
     fun clearArticle() =
-        database.dailyPulseDatabaseQueries.removeAllArticles()
+        database?.dailyPulseDatabaseQueries?.removeAllArticles()
 
     private fun mapToArticleRaw(
         title: String,

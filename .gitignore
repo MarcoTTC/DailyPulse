@@ -11,3 +11,6 @@ xcuserdata
 
 # Desktop generated database
 desktop/DailyPulseDatabase.db
+
+# Web generated lock files
+kotlin-js-store/

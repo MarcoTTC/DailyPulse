@@ -39,22 +39,24 @@ import org.koin.compose.koinInject
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import org.koin.core.Koin
 
-class ArticleScreen(): Screen {
+class ArticleScreen(val koin: Koin): Screen {
     @Composable
     override fun Content() {
-        ArticleScreenContent()
+        ArticleScreenContent(koin)
     }
 }
 
 @Composable
 fun ArticleScreenContent(
-    articleViewModel: ArticleViewModel = koinInject()
+    koin: Koin,
+    articleViewModel: ArticleViewModel = koin.get()
 ) {
     val articleState = articleViewModel.articleState.collectAsState()
 
     Column {
-        AppBar()
+        AppBar(koin)
 
         if (articleState.value.error != null) {
             ErrorMessage(articleState.value.error!!)
@@ -67,14 +69,14 @@ fun ArticleScreenContent(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun AppBar() {
+private fun AppBar(koin: Koin) {
     val navigator = LocalNavigator.currentOrThrow
 
     TopAppBar(
         title = { Text(text = "Articles") },
         actions = {
             IconButton(onClick = {
-                navigator.push(SourceScreen())
+                navigator.push(SourceScreen(koin))
             }) {
                 Icon(
                     imageVector = Icons.Outlined.List,

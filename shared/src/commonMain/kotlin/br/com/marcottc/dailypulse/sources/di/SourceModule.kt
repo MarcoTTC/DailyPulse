@@ -10,7 +10,7 @@ import br.com.marcottc.dailypulse.sources.presentation.SourceViewModel
 val sourceModule = module {
     single<SourceService> { SourceService(get()) }
     single<SourceUseCase> { SourceUseCase(get()) }
-    single<SourceDataSource> { SourceDataSource(get()) }
+    single<SourceDataSource> { SourceDataSource(getOrNull()) }
     single<SourceRepository> { SourceRepository(get(), get()) }
     single<SourceViewModel> { SourceViewModel(get()) }
 }

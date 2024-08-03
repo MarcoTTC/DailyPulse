@@ -31,18 +31,20 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import org.koin.compose.koinInject
+import org.koin.core.Koin
 
-class SourceScreen(): Screen {
+class SourceScreen(val koin: Koin): Screen {
     @Composable
     override fun Content() {
-        SourceScreenContent()
+        SourceScreenContent(koin)
     }
 
 }
 
 @Composable
 fun SourceScreenContent(
-    viewModel: SourceViewModel = koinInject()
+    koin: Koin,
+    viewModel: SourceViewModel = koin.get()
 ) {
     val sourceState = viewModel.sourceState.collectAsState()
 
